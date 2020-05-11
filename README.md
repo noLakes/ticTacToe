@@ -1,0 +1,1 @@
+a simple tic tac toe game for the command line. made using ruby for the odin project backend curriculum.
