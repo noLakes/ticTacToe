@@ -95,13 +95,21 @@ class TicTacGame
         win('O')
       end
     end
+    unless @board.values.any?(EMPTY_CELL)
+      win('draw')
+    end
     play
   end
 
   def win(winner)
-    @score[winner] += 1
-    p "#{winner} wins the round! The scores are now:"
-    p score
+    if winner == 'draw'
+      p "This round ends in a draw!"
+    else
+      @score[winner] += 1
+      p "#{winner} wins the round! The scores are now:"
+      p score
+    end
+
     sleep 1
     @board = newBoard
     p "Would you like to play another round? [y/n]"
@@ -115,6 +123,10 @@ class TicTacGame
   def endGame
     if @score['X'] > @score['O']
       p "X wins the game!"
+      p score
+
+    elsif @score['X'] == @score['O']
+      p "The game is a tie!"
       p score
     else  
       p "O wins the game!"
